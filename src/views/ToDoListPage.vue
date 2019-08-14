@@ -1,8 +1,10 @@
 <template>
-  <div class="todolistpage">
-    <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
-    <ToDoList msg="Welcome to ToDoList"/>
-  </div>
+  <b-container>
+    <div class="todolistpage">
+      <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
+      <ToDoList msg="Welcome to ToDoList"/>
+    </div>
+  </b-container>
 </template>
 
 <script>
