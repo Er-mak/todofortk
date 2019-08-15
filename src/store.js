@@ -57,15 +57,29 @@ export default new Vuex.Store({
     listTodo: state => {
       let {todo} = state.todolist;
       let {current, maxitem} = state.page;
-      let start = ((current-1)*10)
+      let start = ((current-1)*10);
+      console.log('render list');
       return state.todolist.todo.slice(start, start+maxitem);
     }
   },
 
   mutations: {
     // обновляем активную страницу списка задач (пагинация)
-    pageTodo(state, page) {
+    pageTodo(state, page){
       state.page.current = page;
+    },
+
+    // удаление задачи из списка
+    removeTodo(state, id){
+      let todo = state.todolist.todo;
+      for(let i=0, len=todo.length; i<len; i++){
+        if(todo[i].id === id){
+          delete todo[i];
+          console.log(id);
+          console.table(todo);
+          break;
+        }
+      }
     }
   },
 

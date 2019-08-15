@@ -10,7 +10,7 @@
             <b-link class="mr-3 text-success">
               <font-awesome-icon icon="pen" />
             </b-link>
-            <b-link class="text-danger">
+            <b-link class="text-danger" v-on:click="removeTodo(todo.id)">
               <font-awesome-icon icon="times" />
             </b-link>
           </div>
@@ -26,6 +26,13 @@ import {mapState, mapGetters} from 'vuex';
 
 export default {
   name: 'todoitems',
+
+  methods: {
+    removeTodo: function(todoId){
+      this.$store.commit('removeTodo', todoId);
+    }
+  },
+
   computed: {
     ...mapState({
       //countTodo: state => state.todolist.todo.length
