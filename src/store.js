@@ -73,6 +73,15 @@ export default new Vuex.Store({
     // удаление задачи из списка
     removeTodo(state, i){
       state.todolist.todo.splice(i, 1);
+    },
+
+    // добавление новой задачи
+    addTodo (state, todo) {
+      state.todolist.todo.unshift({
+        id: 'id'+(Date.now()),
+        name: todo,
+        done: false
+      });
     }
   },
 
@@ -86,6 +95,11 @@ export default new Vuex.Store({
     // событие удаление задачи из списка
     removeTodo ({commit}, i) {
       commit('removeTodo', i);
+    },
+
+    // событие добавления новой задачи
+    addTodo ({commit}, todo) {
+      commit('addTodo', todo);
     }
 
   }
