@@ -68,7 +68,7 @@ export default {
   methods: {
     // заносим активную страницу в store
     pageTodo: function (p) {
-      this.$store.commit('pageTodo', p);
+      this.$store.dispatch('pageTodo', p);
     }
   },
 

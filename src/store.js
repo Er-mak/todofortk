@@ -46,6 +46,8 @@ export default new Vuex.Store({
   getters: {
     // получение числа активной страницы
     activePage: state => state.page.current,
+    // максимальногое количество задач на странице
+    maxitem: state => state.page.maxitem,
 
     // количество страниц
     countPage: (state, getters) => Math.ceil(getters.countTodo / state.page.maxitem),
@@ -58,7 +60,6 @@ export default new Vuex.Store({
       let {todo} = state.todolist;
       let {current, maxitem} = state.page;
       let start = ((current-1)*10);
-      console.log('render list');
       return state.todolist.todo.slice(start, start+maxitem);
     }
   },
@@ -70,20 +71,22 @@ export default new Vuex.Store({
     },
 
     // удаление задачи из списка
-    removeTodo(state, id){
-      let todo = state.todolist.todo;
-      for(let i=0, len=todo.length; i<len; i++){
-        if(todo[i].id === id){
-          delete todo[i];
-          console.log(id);
-          console.table(todo);
-          break;
-        }
-      }
+    removeTodo(state, i){
+      state.todolist.todo.splice(i, 1);
     }
   },
 
   actions: {
+
+    // событие смены активной страницы
+    pageTodo ({commit}, page) {
+      commit('pageTodo', page);
+    },
+
+    // событие удаление задачи из списка
+    removeTodo ({commit}, i) {
+      commit('removeTodo', i);
+    }
 
   }
 

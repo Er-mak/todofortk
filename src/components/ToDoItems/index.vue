@@ -4,13 +4,13 @@
       <b-list-group-item v-for="(todo, i) in listTodo" class="todo-item">
         <div class="d-flex">
           <div class="text-truncate pr-3 w-100">
-            {{ ((activePage-1)*10)+i+1 }}) {{ todo.name }}
+            {{ ((activePage-1)*maxitem)+i+1 }}) {{ todo.name }}
           </div>
           <div class="text-nowrap todo-item-btns">
             <b-link class="mr-3 text-success">
               <font-awesome-icon icon="pen" />
             </b-link>
-            <b-link class="text-danger" v-on:click="removeTodo(todo.id)">
+            <b-link class="text-danger" v-on:click="removeTodo((((activePage-1)*maxitem)+i))">
               <font-awesome-icon icon="times" />
             </b-link>
           </div>
@@ -29,7 +29,7 @@ export default {
 
   methods: {
     removeTodo: function(todoId){
-      this.$store.commit('removeTodo', todoId);
+      this.$store.dispatch('removeTodo', todoId);
     }
   },
 
@@ -38,6 +38,7 @@ export default {
       //countTodo: state => state.todolist.todo.length
     }),
     ...mapGetters([
+      'maxitem',
       'activePage',
       'countTodo',
       'listTodo'
