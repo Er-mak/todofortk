@@ -13,7 +13,7 @@ export default new Vuex.Store({
     todolist: {
       todo: [
         {id: 'id_1', name: 'todo 1', done: false},
-        {id: 'id_2', name: 'todo 2', done: false},
+        {id: 'id_2', name: 'todo 2', done: true},
         {id: 'id_3', name: 'todo 3', done: false},
         {id: 'id_4', name: 'todo 4', done: false},
         {id: 'id_5', name: 'todo 5', done: false},
@@ -82,6 +82,12 @@ export default new Vuex.Store({
         done: false
       });
       if( state.page.current != 1) state.page.current = 1;
+    },
+
+    // установка статуса выполнения
+    doneTodo (state, todoId) {
+      let done = state.todolist.todo[todoId].done;
+      done = (done ? false : true);
     }
   },
 
@@ -100,6 +106,11 @@ export default new Vuex.Store({
     // событие добавления новой задачи
     addTodo ({commit}, todo) {
       commit('addTodo', todo);
+    },
+
+    // событие статуса выполнения
+    doneTodo ({commit}, todoId) {
+      commit('doneTodo', todoId);
     }
 
   }

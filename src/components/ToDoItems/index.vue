@@ -1,10 +1,19 @@
 <template>
   <div class="todoitems">
     <b-list-group class="mb-1">
-      <b-list-group-item v-for="(todo, i) in listTodo" class="todo-item">
+      <b-list-group-item v-for="(todo, i) in listTodo" class="todo-item pl-3">
         <div class="d-flex">
-          <div class="text-truncate pr-3 w-100">
-            {{ ((countTodo-i)-(activePage-1)*maxitem) }}) {{ todo.name }}
+          <div class="text-truncate pl-1 pr-3 w-100">
+            <b-form-checkbox
+               name="checkbox-(((activePage-1)*maxitem)+i)"
+               v-model="todo.done"
+               v-on:click="doneTodo((((activePage-1)*maxitem)+i))"
+               >
+               <span 
+                 v-bind:class="{'todo-item-done': todo.done}">
+                {{ ((countTodo-i)-(activePage-1)*maxitem) }}) {{ todo.name }}
+               </span>
+            </b-form-checkbox>
           </div>
           <div class="text-nowrap todo-item-btns">
             <b-link class="mr-3 text-success">
@@ -30,6 +39,10 @@ export default {
   methods: {
     removeTodo: function(todoId){
       this.$store.dispatch('removeTodo', todoId);
+    },
+
+    doneTodo: function(todoId){
+      this.$store.dispatch('doneTodo', todoId);
     }
   },
 
@@ -60,4 +73,8 @@ export default {
 
     .todo-item-btns
       display block
+
+  &-done
+    text-decoration line-through
+
 </style>
