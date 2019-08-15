@@ -15,7 +15,7 @@
       <v-pagination
          v-model="currentPage"
          :classes="bootstrapPaginationClasses"
-         :page-count="30"></v-pagination>
+         :page-count="countPage"></v-pagination>
 
     </div>
 
@@ -27,6 +27,8 @@ import vPagination from 'vue-plain-pagination'
 import ToDoHeader from '@/components/ToDoHeader/index.vue'
 import ToDoAddForm from '@/components/ToDoAddForm/index.vue'
 import ToDoItems from '@/components/ToDoItems/index.vue'
+
+import {mapState, mapGetters} from 'vuex';
 
 export default {
 
@@ -54,6 +56,31 @@ export default {
     ToDoItems,
     ToDoAddForm,
     vPagination
+  },
+
+  watch: {
+    // отслеживаем пагинацию
+    currentPage: function(page){
+      this.pageTodo(page);
+    }
+  },
+
+  methods: {
+    // заносим активную страницу в store
+    pageTodo: function (p) {
+      this.$store.commit('pageTodo', p);
+    }
+  },
+
+  computed: {
+    ...mapState({
+      page: state => state.page.current
+    }),
+    ...mapGetters([
+      'countPage',
+      'countTodo',
+      'listTodo'
+    ])
   }
 
 }

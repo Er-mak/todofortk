@@ -1,10 +1,10 @@
 <template>
   <div class="todoitems">
-    <b-list-group class="mb-4">
-      <b-list-group-item v-for="n in 10" class="todo-item">
+    <b-list-group class="mb-1">
+      <b-list-group-item v-for="(todo, i) in listTodo" class="todo-item">
         <div class="d-flex">
-          <div class="text-truncate pr-3">
-            {{ n }}) Cras justo odio asdfkja s;dfkj askldfj a;slkdfj;salkdjf ;askdfj ;salk dfj;asd fj;sakldf j;salkdjf ;aslkdjf ;laskjd f;aslkdj f;lsak jdf;laskdjf
+          <div class="text-truncate pr-3 w-100">
+            {{ ((activePage-1)*10)+i+1 }}) {{ todo.name }}
           </div>
           <div class="text-nowrap todo-item-btns">
             <b-link class="mr-3 text-success">
@@ -17,13 +17,27 @@
         </div>
       </b-list-group-item>
     </b-list-group>
+    <p class="mb-3">Всего задач: <strong>{{ countTodo }}</strong></p>
   </div>
 </template>
 
 <script>
+import {mapState, mapGetters} from 'vuex';
+
 export default {
-  name: 'todoitems'
+  name: 'todoitems',
+  computed: {
+    ...mapState({
+      //countTodo: state => state.todolist.todo.length
+    }),
+    ...mapGetters([
+      'activePage',
+      'countTodo',
+      'listTodo'
+    ])
+  }
 }
+
 </script>
 
 <style scoped lang="stylus">

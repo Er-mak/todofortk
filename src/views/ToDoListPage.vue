@@ -11,8 +11,11 @@
 // @ is an alias to /src
 import ToDoList from '@/components/ToDoList/index.vue'
 
+import store from './../store'
+
 export default {
   name: 'todolistpage',
+  store,
   components: {
     ToDoList
   }
