@@ -57,7 +57,6 @@ export default new Vuex.Store({
 
     // вывод задач на страницу по максимальному значению
     listTodo: state => {
-      let {todo} = state.todolist;
       let {current, maxitem} = state.page;
       let start = ((current-1)*10);
       return state.todolist.todo.slice(start, start+maxitem);

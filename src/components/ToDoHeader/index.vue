@@ -16,8 +16,8 @@
               <font-awesome-icon icon="ellipsis-h" class="text-secondary" />
                 <span class="sr-only">Sort</span>
             </template>
-            <b-dropdown-item href="#" active>По убыванию</b-dropdown-item>
-            <b-dropdown-item href="#">По возрастанию</b-dropdown-item>
+            <b-dropdown-item href="#">Btn 0</b-dropdown-item>
+            <b-dropdown-item href="#">Btn 1</b-dropdown-item>
           </b-dropdown>
         </div>
 
@@ -28,7 +28,7 @@
 
 <script>
 export default {
-  name: 'todoheader',
+  name: 'todoheader'
 }
 </script>
 

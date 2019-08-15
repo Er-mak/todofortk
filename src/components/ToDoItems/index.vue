@@ -4,7 +4,7 @@
       <b-list-group-item v-for="(todo, i) in listTodo" class="todo-item">
         <div class="d-flex">
           <div class="text-truncate pr-3 w-100">
-            {{ ((activePage-1)*maxitem)+i+1 }}) {{ todo.name }}
+            {{ ((countTodo-i)-(activePage-1)*maxitem) }}) {{ todo.name }}
           </div>
           <div class="text-nowrap todo-item-btns">
             <b-link class="mr-3 text-success">
@@ -40,6 +40,7 @@ export default {
     ...mapGetters([
       'maxitem',
       'activePage',
+      'countPage',
       'countTodo',
       'listTodo'
     ])
