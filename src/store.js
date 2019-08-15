@@ -81,6 +81,7 @@ export default new Vuex.Store({
         name: todo,
         done: false
       });
+      if( state.page.current != 1) state.page.current = 1;
     }
   },
 

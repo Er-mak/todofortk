@@ -13,6 +13,7 @@
 
       <p class="d-none">Current page: {{ currentPage }}</p>
       <v-pagination
+         v-show="(countPage > 1 ? true : false)"
          v-model="currentPage"
          :classes="bootstrapPaginationClasses"
          :page-count="countPage"></v-pagination>
