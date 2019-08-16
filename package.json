@@ -11,9 +11,11 @@
     "@fortawesome/free-solid-svg-icons": "^5.10.1",
     "@fortawesome/vue-fontawesome": "^0.1.6",
     "bootstrap-vue": "^2.0.0-rc.28",
+    "firebase": "^6.4.0",
     "vue": "^2.6.10",
     "vue-plain-pagination": "^0.3.0",
     "vue-router": "^3.0.3",
+    "vuefire": "^2.0.0-alpha.24",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
