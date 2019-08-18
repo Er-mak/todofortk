@@ -18,16 +18,6 @@ library.add(faPlus)
  
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
-import VueFire from 'vuefire'
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-Vue.use(VueFire)
-firebase.initializeApp({
-   projectId: 'YOUR_PROJECT_ID', 
-   databaseURL: 'YOUR_DB_URL'
-})
-export const db = firebase.firestore()
-
 import BootstrapVue from 'bootstrap-vue'
 
 import 'bootstrap/dist/css/bootstrap.css'

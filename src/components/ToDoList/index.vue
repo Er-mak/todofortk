@@ -24,12 +24,17 @@
 </template>
 
 <script>
+import firebase from '../../Firebase'
+
 import vPagination from 'vue-plain-pagination'
 import ToDoHeader from '@/components/ToDoHeader/index.vue'
 import ToDoAddForm from '@/components/ToDoAddForm/index.vue'
 import ToDoItems from '@/components/ToDoItems/index.vue'
 
 import {mapState, mapGetters} from 'vuex';
+
+let db = firebase.firestore();
+let docRef = db.collection('todo_db')
 
 export default {
 
