@@ -11,7 +11,6 @@
 
       <ToDoItems />
 
-      <p class="d-none">Current page: {{ currentPage }}</p>
       <v-pagination
          v-show="(countPage > 1 ? true : false)"
          v-model="currentPage"
@@ -24,7 +23,7 @@
 </template>
 
 <script>
-import firebase from '../../Firebase'
+//import firebase from '../../Firebase'
 
 import vPagination from 'vue-plain-pagination'
 import ToDoHeader from '@/components/ToDoHeader/index.vue'
@@ -33,8 +32,8 @@ import ToDoItems from '@/components/ToDoItems/index.vue'
 
 import {mapState, mapGetters} from 'vuex';
 
-let db = firebase.firestore();
-let docRef = db.collection('todo_db')
+//let db = firebase.firestore();
+//let docRef = db.collection('todo_db')
 
 export default {
 
@@ -66,6 +65,7 @@ export default {
 
   watch: {
     // отслеживаем пагинацию
+    // page - номер выбранной страницы
     currentPage: function(page){
       this.pageTodo(page);
     }
@@ -73,6 +73,7 @@ export default {
 
   methods: {
     // заносим активную страницу в store
+    // p - номер страницы
     pageTodo: function (p) {
       this.$store.dispatch('pageTodo', p);
     }
@@ -80,11 +81,21 @@ export default {
 
   computed: {
     ...mapState({
+      // получанием номер страницы из store
       page: state => state.page.current
     }),
     ...mapGetters([
+
+      // всего страниц для списка задач
+      // countPage = number
       'countPage',
+
+      // всего задачь в store
+      // countTodo = number
       'countTodo',
+
+      // список задач для автивной страницы
+      // listTodo = array
       'listTodo'
     ])
   }

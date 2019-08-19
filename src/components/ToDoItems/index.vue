@@ -37,10 +37,14 @@ export default {
   name: 'todoitems',
 
   methods: {
+    // удаление задачи
+    // todoId - id задачи
     removeTodo: function(todoId){
       this.$store.dispatch('removeTodo', todoId);
     },
 
+    // выбор статуса задачи
+    // todoId - id задачи
     doneTodo: function(todoId){
       this.$store.dispatch('doneTodo', todoId);
     }
@@ -51,11 +55,11 @@ export default {
       //countTodo: state => state.todolist.todo.length
     }),
     ...mapGetters([
-      'maxitem',
-      'activePage',
-      'countPage',
-      'countTodo',
-      'listTodo'
+      'maxitem', // максимальное кол-во задач на странице
+      'activePage', // номер активной страницы
+      'countPage', // количество страниц для списка задач
+      'countTodo', // количество всех задач
+      'listTodo' // массив выводимых задач
     ])
   }
 }
